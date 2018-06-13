@@ -1,12 +1,14 @@
-package com.gensoft.inventorysystem.controller;
+package com.gensoft.inventorysystem.view;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-public class Home {
+public class LoginPage {
 
 	private JFrame frame;
 
@@ -17,7 +19,7 @@ public class Home {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home window = new Home();
+					LoginPage window = new LoginPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +31,7 @@ public class Home {
 	/**
 	 * Create the application.
 	 */
-	public Home() {
+	public LoginPage() {
 		initialize();
 	}
 
@@ -40,9 +42,6 @@ public class Home {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
 	}
 
 }
