@@ -13,6 +13,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.JTabbedPane;
+import javax.swing.JButton;
 
 public class HomePage {
 
@@ -54,7 +56,7 @@ public class HomePage {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 700, 650);
+		frame.setBounds(100, 100, 1920, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -85,6 +87,40 @@ public class HomePage {
 		loginMenuItem.setFont(new Font(TEXT_FONT, MENU_ITEM_TEXT_FONT_STYLE, MENU_ITEM_TEXT_FONT_SIZE));
 		loginMenuItem.setIcon(new ImageIcon(IMAGE_PATH+"login.jpg"));
 		fileMenu.add(loginMenuItem);
+		
+		JTabbedPane homeTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		homeTabbedPane.setToolTipText("Home");
+		menuBar.add(homeTabbedPane);
+		
+		JPanel homePanel = new JPanel();
+		homeTabbedPane.addTab("Home", null, homePanel, null);
+		
+		JButton homeButton = new JButton("Home");
+		homePanel.add(homeButton);
+		
+		JButton purchaseButton = new JButton("Purchase");
+		homePanel.add(purchaseButton);
+		
+		JButton saleButton = new JButton("Sale");
+		homePanel.add(saleButton);
+		
+		JButton voucherButton = new JButton("Voucher");
+		homePanel.add(voucherButton);
+		
+		JButton stockJournalButton = new JButton("Stock Journal");
+		homePanel.add(stockJournalButton);
+		
+		JButton stockVerificationButton = new JButton("Stock Verification");
+		homePanel.add(stockVerificationButton);
+		
+		JButton productDetailsButton = new JButton("Product Details");
+		homePanel.add(productDetailsButton);
+		
+		JButton groupDetailsButton = new JButton("Group Details");
+		homePanel.add(groupDetailsButton);
+				
+		JPanel reportsPanel = new JPanel();
+		homeTabbedPane.addTab("Reports", null, reportsPanel, null);
 	}
 
 }
