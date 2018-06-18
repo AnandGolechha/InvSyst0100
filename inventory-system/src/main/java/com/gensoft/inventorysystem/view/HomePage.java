@@ -1,21 +1,25 @@
 package com.gensoft.inventorysystem.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JDesktopPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JToolBar;
-import javax.swing.JPanel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.ImageIcon;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTabbedPane;
-import javax.swing.JButton;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+
+/**
+ * This class is used for home page design.
+ * @author Kaushik Udavant
+ *
+ */
 public class HomePage {
 
 	private JFrame frame;
@@ -27,6 +31,8 @@ public class HomePage {
 	private int MENU_ITEM_TEXT_FONT_STYLE=0;
 	
 	private int MENU_ITEM_TEXT_FONT_SIZE=17;
+	
+	JTabbedPane homeTabbedPane;
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +62,7 @@ public class HomePage {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 1920, 1080);
+		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -88,7 +94,7 @@ public class HomePage {
 		loginMenuItem.setIcon(new ImageIcon(IMAGE_PATH+"login.jpg"));
 		fileMenu.add(loginMenuItem);
 		
-		JTabbedPane homeTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		homeTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		homeTabbedPane.setToolTipText("Home");
 		menuBar.add(homeTabbedPane);
 		
@@ -96,6 +102,9 @@ public class HomePage {
 		homeTabbedPane.addTab("Home", null, homePanel, null);
 		
 		JButton homeButton = new JButton("Home");
+		
+		homeButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		homeButton.setIcon(new ImageIcon(IMAGE_PATH+"home.jpg"));
 		homePanel.add(homeButton);
 		
 		JButton purchaseButton = new JButton("Purchase");
@@ -116,11 +125,23 @@ public class HomePage {
 		JButton productDetailsButton = new JButton("Product Details");
 		homePanel.add(productDetailsButton);
 		
-		JButton groupDetailsButton = new JButton("Group Details");
-		homePanel.add(groupDetailsButton);
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		homePanel.add(splitPane);
+		
+		JButton btnNewButton = new JButton("New button");
+		homePanel.add(btnNewButton);
 				
+		reportsTabPanel();
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.WEST);
+	}
+	private void reportsTabPanel() {
+		
 		JPanel reportsPanel = new JPanel();
 		homeTabbedPane.addTab("Reports", null, reportsPanel, null);
+		
+		
 	}
-
 }
