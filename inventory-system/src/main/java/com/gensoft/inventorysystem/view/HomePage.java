@@ -22,6 +22,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.CardLayout;
 import javax.swing.JSplitPane;
 import javax.swing.GroupLayout;
@@ -44,6 +45,9 @@ import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
 import javax.swing.JSpinner;
 import javax.swing.JPopupMenu;
+import javax.swing.JSlider;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * This class is used for home page design.
@@ -58,6 +62,13 @@ public class HomePage {
 
 	private String IMAGE_PATH="C:\\Users\\Jarves\\git\\InvSyst0100-1\\inventory-system\\Icon\\";
 	
+	private String HOME_BUTTON_IMAGE_PATH="C:\\Users\\Jarves\\git\\InvSyst0100-1\\inventory-system\\Icon\\Home Menu Icon";
+	
+	private String REPORTS_BUTTON_IMAGE_PATH="C:\\Users\\Jarves\\git\\InvSyst0100-1\\inventory-system\\Icon\\reports icon";
+	
+	private String OTHERS_BUTTON_IMAGE_PATH="C:\\Users\\Jarves\\git\\InvSyst0100-1\\inventory-system\\Icon\\others icon";
+
+	
 	private String TEXT_FONT="Comic Sans MS";
 	
 	private int MENU_ITEM_TEXT_FONT_STYLE=0;
@@ -67,6 +78,10 @@ public class HomePage {
 	private int BUTTON_TEXT_FONT_STYLE=0;
 	
 	private int BUTTON_TEXT_FONT_SIZE=17;
+	
+	private int HOME_BUTTON_HIEGHT=50;
+	
+	private int HOME_BUTTON_WIDTH=50;
 	JTabbedPane homeTabbedPane;
 	/**
 	 * Launch the application.
@@ -110,7 +125,7 @@ public class HomePage {
 		panel.add(homeMenuBar, BorderLayout.NORTH);
 		homeMenuBar.setBorderPainted(false);
 		
-		JMenu showFilesMenu = new JMenu("sdcnsjkvnsdns");
+		JMenu showFilesMenu = new JMenu("");
 		showFilesMenu.setBackground(Color.BLUE);
 		showFilesMenu.setForeground(Color.BLUE);
 		
@@ -147,6 +162,19 @@ public class HomePage {
 		homeTabbedPane.addTab("Home", null, homePanel, null);
 		homeTabbedPane.setFont(new Font(TEXT_FONT, MENU_ITEM_TEXT_FONT_STYLE, MENU_ITEM_TEXT_FONT_SIZE));
 		homePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		/*final JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(homePanel, popupMenu);
+		popupMenu.setLabel("");
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Notification");
+		mntmNewMenuItem.setBackground(Color.WHITE);
+		popupMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("GST Extract");
+		mntmNewMenuItem_1.setBackground(Color.WHITE);
+		popupMenu.add(mntmNewMenuItem_1);*/
+		
+		
 		
 		JPanel homeButtonPanel = new JPanel();
 		homeButtonPanel.setBackground(Color.WHITE);
@@ -155,117 +183,119 @@ public class HomePage {
 		homeButtonPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Home", TitledBorder.CENTER, TitledBorder.BOTTOM, null, SystemColor.desktop));
 		homeButtonPanel.setFont(new Font(TEXT_FONT,MENU_ITEM_TEXT_FONT_STYLE,MENU_ITEM_TEXT_FONT_SIZE));
 		homeButtonPanel.setOpaque(true);	
+		
 		homePanel.add(homeButtonPanel);
 		
-		JButton homeButton = new JButton("");
-		homeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		homeButton.setBackground(SystemColor.activeCaption);
+		JButton homeButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\home.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		homeButtonPanel.add(homeButton);
-		homeButton.setAlignmentY(2.0f);
-		homeButton.setAlignmentX(2.0f);
-		
-		homeButton.setIcon(new ImageIcon("C:\\Users\\Jarves\\git\\InvSyst0100-1\\inventory-system\\Icon\\home.png"));
-		homeButton.setVerticalAlignment(SwingConstants.TOP);
-		homeButton.setFont(new Font(TEXT_FONT, BUTTON_TEXT_FONT_STYLE,BUTTON_TEXT_FONT_SIZE ));
+
 		
 		JPanel purchasePanel = new JPanel();
 		purchasePanel.setBackground(Color.WHITE);
 		purchasePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Purchase", TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		homePanel.add(purchasePanel);
 		
-		JButton purchaseButton = new JButton("");
+		JButton purchaseButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\purchase.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		purchasePanel.add(purchaseButton);
-		purchaseButton.setAlignmentY(5.0f);
-		purchaseButton.setAlignmentX(5.0f);
-		purchaseButton.setIcon(new ImageIcon(IMAGE_PATH+"purchase.png"));
 		
 		JPanel salePanel = new JPanel();
+		salePanel.setBackground(Color.WHITE);
 		salePanel.setBorder(new TitledBorder(null, "Sale", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
 		homePanel.add(salePanel);
 		
-		JButton saleButton = new JButton("Sale");
-		saleButton.setIcon(new ImageIcon("C:\\Users\\Jarves\\git\\InvSyst0100-1\\inventory-system\\Icon\\new-file.jpg"));
+		JButton saleButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\sale.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		salePanel.add(saleButton);
 		
 		JPanel voucherPanel = new JPanel();
+		voucherPanel.setBackground(Color.WHITE);
 		voucherPanel.setBorder(new TitledBorder(null, "Voucher", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
 		homePanel.add(voucherPanel);
 		
-		JButton voucherButton = new JButton("Voucher");
+		JButton voucherButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\voucher.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		voucherPanel.add(voucherButton);
 		
 		JPanel inventoryPanel = new JPanel();
+		inventoryPanel.setBackground(Color.WHITE);
 		inventoryPanel.setBorder(new TitledBorder(null, "inventory", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
 		homePanel.add(inventoryPanel);
 		
-		JButton stockJournalButton = new JButton("Stock Journal");
+		JButton stockJournalButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\stock-journal.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		inventoryPanel.add(stockJournalButton);
 		
-		JButton stockVerificationButton = new JButton("Stock Verification");
+		JButton stockVerificationButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\stock-verification.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		stockVerificationButton.setBackground(Color.WHITE);
 		inventoryPanel.add(stockVerificationButton);
 		
-		JButton productDetailsButton = new JButton("Product Detail");
+	 
+		JButton productDetailsButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\product-details.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		productDetailsButton.setBackground(Color.WHITE);
 		inventoryPanel.add(productDetailsButton);
 		
 		JPanel buttonSpliterPanel = new JPanel();
 		inventoryPanel.add(buttonSpliterPanel);
-		buttonSpliterPanel.setLayout(new GridLayout(0, 1, 5, 8));
+		buttonSpliterPanel.setLayout(new GridLayout(0, 1, 5, 0));
 		
-		JButton groupDetailsButton = new JButton("Grouo Details");
+		
+		JButton groupDetailsButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\group-details.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, 30, java.awt.Image.SCALE_SMOOTH)));
+		groupDetailsButton.setBackground(Color.WHITE);
 		buttonSpliterPanel.add(groupDetailsButton);
 		
-		JButton unitDetailsButton = new JButton("Unit Details");
+		JButton unitDetailsButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\unit-details.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, 30, java.awt.Image.SCALE_SMOOTH)));
 		buttonSpliterPanel.add(unitDetailsButton);
 		
 		JPanel accountPanel = new JPanel();
+		accountPanel.setBackground(Color.WHITE);
 		accountPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Account", TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		homePanel.add(accountPanel);
 		
-		JButton suppliersButton = new JButton("Suppliers");
+		
+		JButton suppliersButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\suppliers.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		accountPanel.add(suppliersButton);
 		
-		JButton customersButton = new JButton("Customers");
+		JButton customersButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\customers.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		accountPanel.add(customersButton);
 		
-		JButton accountsButton = new JButton("Accounts");
+		
+		JButton accountsButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\accounts.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		accountsButton.setBackground(Color.WHITE);
+		
 		accountPanel.add(accountsButton);
 		
-		JButton brokersButton = new JButton("Brokers");
+		
+		
+		JButton brokersButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\broker.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		accountPanel.add(brokersButton);
 		
-		JButton coupenButton = new JButton("Coupen");
+		
+		JButton coupenButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\coupen.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		
 		accountPanel.add(coupenButton);
 		
 		JPanel estimationPanel = new JPanel();
+		estimationPanel.setBackground(Color.WHITE);
 		estimationPanel.setBorder(new TitledBorder(null, "Others", TitledBorder.CENTER, TitledBorder.BOTTOM, null, null));
 		homePanel.add(estimationPanel);
 		
-		JButton estimationButton = new JButton("Estimation");
+
+		JButton estimationButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\estimation.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		estimationPanel.add(estimationButton);
 		
 		JPanel settingPanel = new JPanel();
+		settingPanel.setBackground(Color.WHITE);
 		settingPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Settings", TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		homePanel.add(settingPanel);
 		
-		JButton settingButton = new JButton("Settings");
+	
+		JButton settingButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\settings.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		settingPanel.add(settingButton);
 		
-		JPanel otherMenuPanel = new JPanel();
-		settingPanel.add(otherMenuPanel);
-		otherMenuPanel.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JButton notificationsButton = new JButton("Notifications");
-		otherMenuPanel.add(notificationsButton);
-		
-		JButton gstExtractButton = new JButton("GST Extract");
-		otherMenuPanel.add(gstExtractButton);
-		
-		JButton aboutAppButton = new JButton("About APP");
+		JButton aboutAppButton = new JButton(new ImageIcon(((new ImageIcon(HOME_BUTTON_IMAGE_PATH+"\\about-app.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		settingPanel.add(aboutAppButton);
+			
+			
+			
+			
 		panel.add(homeTabbedPane);
 		
 		JInternalFrame taskInternalFrame = new JInternalFrame("Tasks");
@@ -287,6 +317,10 @@ public class HomePage {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"20-12-2018"}));
 		panel_1.add(comboBox);
 		panel_1.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{comboBox}));
+		
+		JPanel centralPurchasePanel = new JPanel();
+		frame.getContentPane().add(centralPurchasePanel, BorderLayout.CENTER);
+		
 		taskInternalFrame.setVisible(true);
 				
 		reportsTabPanel();
@@ -297,123 +331,228 @@ private void reportsTabPanel() {
 		reportsPanel.setBackground(Color.WHITE);
 		homeTabbedPane.addTab("Reports", null, reportsPanel, null);
 		
-		JButton stockBookButton = new JButton("Stock Book");
-		stockBookButton.setIcon(new ImageIcon(IMAGE_PATH+"Stock Book.jpg"));
-		reportsPanel.add(stockBookButton);
+		JPanel inventoryPanel = new JPanel();
+		inventoryPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Inventory", TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		inventoryPanel.setBackground(Color.WHITE);
+		reportsPanel.add(inventoryPanel);
 		
-		JButton InvoiceButton = new JButton("Invoice");
-		InvoiceButton.setIcon(new ImageIcon(IMAGE_PATH+"Invoice.png"));
-		reportsPanel.add(InvoiceButton);
+		
+		JButton stockBookButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\stock-book.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		inventoryPanel.add(stockBookButton);
+		stockBookButton.setBackground(Color.WHITE);
+		stockBookButton.setOpaque(true);
+		
+				
+		JButton InvoiceButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\invoice.png")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		inventoryPanel.add(InvoiceButton);
+		InvoiceButton.setBackground(Color.WHITE);
+		InvoiceButton.setOpaque(true);
 		
 		JPanel Inventory = new JPanel();
-		reportsPanel.add(Inventory);
+		Inventory.setBackground(Color.WHITE);
+		inventoryPanel.add(Inventory);
 		Inventory.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JButton MonthlyButton = new JButton("Monthly");
-		MonthlyButton.setIcon(new ImageIcon(IMAGE_PATH+"Monthaly.jpg"));
+		
+		JButton MonthlyButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\monthly.jfif")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		MonthlyButton.setText("Monthly");
 		Inventory.add(MonthlyButton);
+		MonthlyButton.setBackground(Color.WHITE);
+		MonthlyButton.setOpaque(true);
 		
-		JButton Summary = new JButton("Summary");
-		Summary.setIcon(new ImageIcon(IMAGE_PATH+"Summary.png"));
+		
+		JButton Summary = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\summary.png")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		Summary.setText("Summary");
 		Inventory.add(Summary);
+		Summary.setBackground(Color.WHITE);
+		Summary.setOpaque(true);
 		
-		JButton expiryAgingButton = new JButton("Expiry Aging");
-		expiryAgingButton.setIcon(new ImageIcon(IMAGE_PATH+"ExpiryAging.jpg"));
+		
+		JButton expiryAgingButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\expiry-aging.jfif")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		expiryAgingButton.setText("Expiry Aging");
 		Inventory.add(expiryAgingButton);
+		expiryAgingButton.setBackground(Color.WHITE);
+		expiryAgingButton.setOpaque(true);
 		
-		JButton stockJournalButton = new JButton("Stock Journal");
-		stockJournalButton.setIcon(new ImageIcon(IMAGE_PATH+"Stock.png"));
-		reportsPanel.add(stockJournalButton);
 		
-		JButton generalLedgerButton = new JButton("General Ledger");
-		generalLedgerButton.setIcon(new ImageIcon(IMAGE_PATH+"GeneralLedger.jpg"));
-		reportsPanel.add(generalLedgerButton);
+		JButton stockJournalButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\stock-journal.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		inventoryPanel.add(stockJournalButton);
+		expiryAgingButton.setBackground(Color.WHITE);
+		expiryAgingButton.setOpaque(true);
 		
-		JPanel Account = new JPanel();
-		reportsPanel.add(Account);
-		Account.setLayout(new GridLayout(3, 2, 5, 5));
+		JPanel Accountpanel = new JPanel();
+		Accountpanel.setBorder(new TitledBorder(null, "Accounts", TitledBorder.CENTER, TitledBorder.BOTTOM, null, Color.BLACK));
+		Accountpanel.setBackground(Color.WHITE);
+		reportsPanel.add(Accountpanel);
+		Accountpanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton taxReportButton = new JButton("Tax Report");
-		taxReportButton.setIcon(new ImageIcon(IMAGE_PATH+"TaxReport.jpg"));
-		Account.add(taxReportButton);
 		
-		JButton trialBalanceButtton = new JButton("Trial Balance");
-		trialBalanceButtton.setIcon(new ImageIcon(IMAGE_PATH+"BrokerageReport.png"));
-		Account.add(trialBalanceButtton);
+		JButton generalLedgerButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\general-ledger.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT,HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		Accountpanel.add(generalLedgerButton);
+		generalLedgerButton.setBackground(Color.WHITE);
+		generalLedgerButton.setOpaque(true);
 		
-		JButton dueBillsButton = new JButton("Due BIlls");
-		dueBillsButton.setIcon(new ImageIcon(IMAGE_PATH+"DueBills.jpg"));
-		Account.add(dueBillsButton);
+		JPanel panel = new JPanel();
+		Accountpanel.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton profitLossButton = new JButton("Profit & Loss");
-		profitLossButton.setIcon(new ImageIcon(IMAGE_PATH+"ProfitLoss.jpg"));
-		Account.add(profitLossButton);
 		
-		JButton brokerageReportButton = new JButton("Brokerage Report");
-		brokerageReportButton.setIcon(new ImageIcon(IMAGE_PATH+"BrokerageReport.png"));
-		Account.add(brokerageReportButton);
+		JButton taxReportButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\tax-report.png")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		panel.add(taxReportButton);
+		taxReportButton.setText("Tax Report");
+		taxReportButton.setBackground(Color.WHITE);
+		taxReportButton.setOpaque(true);
 		
-		JButton balanceSheetButton = new JButton("Balance Sheet");
-		balanceSheetButton.setIcon(new ImageIcon(IMAGE_PATH+"BalanceSheet.jpg"));
 		
-		Account.add(balanceSheetButton);
+		JButton trialBalanceButtton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\trial-balance.png")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		panel.add(trialBalanceButtton);
+		trialBalanceButtton.setText("Trial Balance ");
+		trialBalanceButtton.setBackground(Color.WHITE);
+		trialBalanceButtton.setOpaque(true);
 		
-		JButton barcodeLabelButton = new JButton("Barcode Button");
-		barcodeLabelButton.setIcon(new ImageIcon(IMAGE_PATH+"BarcodeButton.jpg"));
-		reportsPanel.add(barcodeLabelButton);
 		
-		JButton Analyze = new JButton("Analyze");
-		Analyze.setIcon(new ImageIcon(IMAGE_PATH+"Analyze.jpg"));
-		reportsPanel.add(Analyze);
+		JButton dueBillsButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\due-bills.jfif")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		panel.add(dueBillsButton);
+		dueBillsButton.setText("Due Bills");
+		dueBillsButton.setBackground(Color.WHITE);
+		dueBillsButton.setOpaque(true);
+		
+		JPanel panel_1 = new JPanel();
+		Accountpanel.add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		
+		JButton profitLossButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\profit-loss.jfif")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		panel_1.add(profitLossButton);
+		profitLossButton.setText("Profit & Loss");
+		profitLossButton.setBackground(Color.WHITE);
+		profitLossButton.setOpaque(true);
+		
+		
+		JButton brokerageReportButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\brokerage-report.png")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		panel_1.add(brokerageReportButton);
+		brokerageReportButton.setText("Brokerage Report");
+		brokerageReportButton.setBackground(Color.WHITE);
+		brokerageReportButton.setOpaque(true);
+		
+		
+		JButton balanceSheetButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\balance-sheet.jfif")).getImage()).getScaledInstance(15, 25, java.awt.Image.SCALE_SMOOTH)));
+		panel_1.add(balanceSheetButton);
+		balanceSheetButton.setText("Balance Sheet");
+		balanceSheetButton.setBackground(Color.WHITE);
+		balanceSheetButton.setOpaque(true);
+	
+		
+		JPanel otherspanel = new JPanel();
+		otherspanel.setBorder(new TitledBorder(null, "Others", TitledBorder.CENTER, TitledBorder.BOTTOM, null, Color.BLACK));
+		otherspanel.setBackground(Color.WHITE);
+		reportsPanel.add(otherspanel);
+		FlowLayout fl_otherspanel = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		fl_otherspanel.setAlignOnBaseline(true);
+		otherspanel.setLayout(fl_otherspanel);
+		
+		
+		JButton analyzeButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\Analyze.jpg")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		otherspanel.add(analyzeButton);
+		analyzeButton.setBackground(Color.WHITE);
+		analyzeButton.setOpaque(true);
+		
+		
+		JButton others = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\others.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT, HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		otherspanel.add(others);
+		others.setBackground(Color.WHITE);
+		others.setOpaque(true);
+		
+		
+		JButton barcodeLabelButton = new JButton(new ImageIcon(((new ImageIcon(REPORTS_BUTTON_IMAGE_PATH+"\\barcode.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT,HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		otherspanel.add(barcodeLabelButton);
+		barcodeLabelButton.setBackground(Color.WHITE);
+		barcodeLabelButton.setOpaque(true);
+		
+		JPanel panel_2 = new JPanel();
+		otherspanel.add(panel_2);
+		
+		JPopupMenu otherspopupMenu = new JPopupMenu();
+		panel_2.add(otherspopupMenu);
+		otherspopupMenu.setBackground(Color.WHITE);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Counter Sales Report");
+		panel_2.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Estimation Report");
+		panel_2.add(mntmNewMenuItem_1);
+		
 		
 		JPanel Other = new JPanel();
 		reportsPanel.add(Other);
 		Other.setLayout(new GridLayout(3, 1, 5, 5));
-		
-		JButton Others = new JButton("Others");
-		Others.setIcon(new ImageIcon(IMAGE_PATH+"Others.jpg"));
-		reportsPanel.add(Others);
-		
-		JButton counterSalesExtractButton = new JButton("Counetr Sales Extract");
-		counterSalesExtractButton.setIcon(new ImageIcon(IMAGE_PATH+"ctrsalesreport.png"));
-		reportsPanel.add(counterSalesExtractButton);
-		
-		JButton estimationReportButton = new JButton("Estimation Report");
-		estimationReportButton.setIcon(new ImageIcon(IMAGE_PATH+"estimationreport.png"));
-		reportsPanel.add(estimationReportButton);
 		
 		othersTabPanel();
 		}
 	
 	private void othersTabPanel(){
 		
-		JPanel othersTabPanel = new JPanel();
-		homeTabbedPane.addTab("Others", (Icon) null, othersTabPanel, null);
-		othersTabPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		
+		JPanel othersPanel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) othersPanel.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		othersPanel.setBackground(Color.WHITE);
+		homeTabbedPane.addTab("Others", null, othersPanel, null);
 		
 		JPanel securitySettingspanel = new JPanel();
-		othersTabPanel.add(securitySettingspanel);
+		securitySettingspanel.setBorder(new TitledBorder(null, "Security Settings", TitledBorder.CENTER, TitledBorder.BOTTOM, null, Color.BLACK));
+		securitySettingspanel.setBackground(Color.WHITE);
+		othersPanel.add(securitySettingspanel);
 		securitySettingspanel.setLayout(new GridLayout(1, 2, 5, 5));
 		
-		JButton changePasswordButton = new JButton("Change Password ");
-		changePasswordButton.setIcon(new ImageIcon(IMAGE_PATH+"changepass.jpg"));
-		othersTabPanel.add(changePasswordButton);
 		
-		JButton usersButton = new JButton("Users");
-		usersButton.setIcon(new ImageIcon(IMAGE_PATH+"users.jpg"));
-		othersTabPanel.add(usersButton);
+		JButton usersButton = new JButton(new ImageIcon(((new ImageIcon(OTHERS_BUTTON_IMAGE_PATH+"\\users.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT,HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		securitySettingspanel.add(usersButton);
+		usersButton.setBackground(Color.WHITE);
+		usersButton.setOpaque(true);
+		
+		
+		
+		JButton changePasswordButton = new JButton(new ImageIcon(((new ImageIcon(OTHERS_BUTTON_IMAGE_PATH+"\\password-change.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT,HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		securitySettingspanel.add(changePasswordButton);
+		usersButton.setBackground(Color.WHITE);
+		usersButton.setOpaque(true);
 		
 		JPanel otherspanel = new JPanel();
-		othersTabPanel.add(otherspanel);
+		otherspanel.setBackground(Color.WHITE);
+		otherspanel.setBorder(new TitledBorder(null, "Others", TitledBorder.CENTER, TitledBorder.BOTTOM, null, Color.BLACK));
+		othersPanel.add(otherspanel);
 		otherspanel.setLayout(new GridLayout(1, 2, 5, 5));
 		
-		JButton languageButton = new JButton("Language");
-		languageButton.setIcon(new ImageIcon(IMAGE_PATH+"languages.jpg"));
+		
+		JButton languageButton = new JButton(new ImageIcon(((new ImageIcon(OTHERS_BUTTON_IMAGE_PATH+"\\language.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT,HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
 		otherspanel.add(languageButton);
+		languageButton.setBackground(Color.WHITE);
+		languageButton.setOpaque(true);
 		
-		JButton themeButton = new JButton("Theme");
-		themeButton.setIcon(new ImageIcon(IMAGE_PATH+"theme.jpg"));
+		
+		JButton themeButton = new JButton(new ImageIcon(((new ImageIcon(OTHERS_BUTTON_IMAGE_PATH+"\\theme.jfif")).getImage()).getScaledInstance(HOME_BUTTON_HIEGHT,HOME_BUTTON_WIDTH, java.awt.Image.SCALE_SMOOTH)));
+		themeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		otherspanel.add(themeButton);
+		themeButton.setBackground(Color.WHITE);
+		themeButton.setOpaque(true);
 		
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
